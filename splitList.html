@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="./authCall.js">
+
+  </script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form id="token">
+    	<input type="hidden" name="grant_type" value="password">
+
+      <div id="from">
+        <label for="username">username:</label>
+        <input type="text" id="username" name="username">
+      </div>
+
+      <div id="reply">
+        <label for="password">password:</label>
+        <input type="text" id="password" name="password">
+      </div>
+
+
+      <div class="button">
+        <input type="submit" value="Get Token">
+      </div>
+      <div id="view">
+        <label for="tableName">table name:</label>
+        <input type="text" id="tableName" name="tableName">
+      </div>
+
+    </form>
+    <div id="result">
+    </div>
+    </body>
+    </html>
+
+    <form class="" action="index.html" method="post">
+    list  <input id="ok" type="text" name="" value=""/>
+    <button type="button" name="button" onclick="gPostIds()">click</button>
+    <button type="button" name="button" onclick="buildObjBody()">validate</button>
+    </form>
+  </body>
+<script type="text/javascript">
+
+
+function gPostIds(){
+  // console.log("something")
+  //1004
+  var x = document.querySelector("#tableName").value;
+  $.ajax({
+      type:'GET',
+      url: 'https://api.eccmp.com/services2/api/Table',
+      data:{
+        tableName: x
+      },
+      beforeSend: function (xhr) {
+			 xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
+      // xhr.setRequestHeader('Authorization', "Bearer " + "AAEAAJASUinmhVDNCbtqolTJEn5njgR9GHWZk2wuDgh148gfbUzbRzULcXZ763ulRiTPriqzqFR6z9wPHuKFARPvG3rTwEt1UkjiWQnWB86BxaUqMYVu6PQTSerR3EdZGTZrCZtkSUX2V_HLPibzQohGZ-o8GZ9kZoaWCULze7W-S39JGI5lyfEhyoXzJTdOeesqqNsjM87VGaiFB6wKb4XxlRNlYuCQ88X5ffKidbLUGKUpEerp89WsNWqLX8PUN4aVK1Oo-BdL4Mc-EpLYld0NlzwaI6yLKGNzY484OCR3jCwDhcTPV8oJQIKQGhLV_e4YRHibg1k-Ur4RKdc6Jpf1k3pkAQAAAAEAALLJUlH0mM5VES-x0h5kOHTKh0WyZ_J0GvGrpZhfPOwiO-yIjmHvXStw12EFVNmG-lP4jSrJffNEQpxhptN8aw0CqKEQ8b_2qpWHtOJCV9YnGxeUq1r_mK6TqQtRZMxy22yegwsiCs1BWURhKu4B8my3ce2Cb_hDv5ZmcoVL1-2vEIbgWMAQQl0-upTQVRkHWBzxBzWzMiTYH8E8ricC5B7bMasUfU_imw2HvcNPjK54SZB7fTZY6aMSlFXVbAEfjOU6JQcR7CKMm17l33ISepKSvHK0d87RW_uc14qY9AfakhUfsEMste4t_hlAn7FtKzQQ-5tRGhxxHq7xGZNTu03rT00P62cHrM4e1mA1tfSkI0OX1RKwpn8Gpp-oaHyIkxJ5eE97YzRsMXkBXaJV0x0dD92xb7_BmPCfXcSoOnY2RVV_Xt7oHupY2lyzDFc8Cal70Hym1-sQejSl-MllWr0");
+		    },
+
+      // data: {
+      //   Authorization: "Bearer AAEAAJ7y7-AiR0tFHuiiuJ6JtIVvrICyUXjd-yLcqh1DOAOrZDaGAkf8JKDZDW37XBqeupvAQR8UrdWHnN3zMtS5g97x3a2VSAeh3a3DkDqluww931X-b0-JD0TSRy947GDDw1gTx6J4bhcHqe2Fy0hj3n6ffE9dwU1lK-lFmjWzz_Bh6PBw5BBWtF0HDo5aKRtW-urZrA9FLvppYol_0VphsXJUpLUtyUAp6o81AtU_d8UoCCDpMs3IC41ufYXVKGNU2iGQf6PGhFKoXbm7c4pU0JuEdONfiWRsuzhQiaUHAqAnjVKoLHmUs7DQoKTr3fThQswkW2RxheJDjI3rXIvh0XtkAQAAAAEAAKN9frFy8V3Q4ghIspLXw5xoRksI-D-RRJkvx3RxOwSpNj0ietCZ3wROAPU2wbc1uFiYq4yJu9dt8e2-RVkD_riDVBObBQbXP5W5rZNo4oXk6DsfOLtxmZh2WbMt330SBUzLWftX-h8GNPaaR5vIGUos-_qO1G_dRcYaCrxiCq2GCa_W_A0IhRfoCKa0YdKpZwKthIlrOTJ7tvzH9Xunykb1YNZjzWAWycKZnZ-oaA8sdjYUvb1jVSAuEafgALTlb9BhE-3vgxlygyuGJnsh0saf17i3XK9yPCihCI1g-Z0CwxB5rxxK6TfIdM_6QOCQy9hCuUW8h7VFLfsXw7GodyzpWKrmBziPco9bCm2KSN0TAFbyOEWIo75RtCgx-PEKBLV8yvAFarPP54p08bjJpkIenkpXw1cGbOVKWsC0aRCsJqXSFvYCov8kVHfZOqPK2cWis9gu7dha1U0d-QEOgtc"
+      // },
+      success: function(response) {
+console.log("abc")
+myfunction(response);
+      }});
+    };
+    var propArray = {};
+    var final = [];
+    var objBody =[];
+function myfunction(e){
+  console.log(e)
+  for (var i = 0; i < e.length; i++) {
+    var a = e[i].columnName
+    var b = e[i].propId
+    propArray[a] = b
+  }
+// console.log("this is the prop array: " + JSON.stringify(propArray));
+// console.log(propArray.ak_customer)
+var x = document.querySelector("#ok").value;
+  var y = x.split(" ");
+  for (var i = 0; i < y.length; i++) {
+    var w = propArray[y[i]];
+    final.push(w);
+    if (i == (y.length -1)) {
+      console.log("final " + final);
+    }
+
+
+  }
+};
+function buildObjBody(){
+for (var i = 0; i < final.length; i++) {
+  var objBodyBuild ={"prop_id": final[i],"seq": i+1,};
+  objBody.push(objBodyBuild);
+  }
+  console.log(JSON.stringify(objBody));
+;}
+
+//some validation to ensure the number of input matches the output?
+
+// function myfunction(){
+//   var x = document.querySelector("#ok").value;
+//   var y = x.split(" ");
+//   console.log(y);
+// };
+
+// function myfunction(){
+//   var x = document.querySelector("#ok").value;
+//   console.log(x);
+//     var y = x.split(" ");
+//   console.log(y);
+//   var z = [];
+//   for (var i = 0; i < y.length; i++) {
+//     var k ={"prop_id": y[i],"seq": i+1,};
+//     console.log("this is k: " + k.prop_id)
+//     z.push(k);
+//     console.log(z[0].prop_id);
+//     console.log(JSON.stringify(z));
+//   }
+// };
+</script>
+</html>
+
+<!-- ak_customer
+domain_prefix
+customer_id
+location_id
+customer_type
+wallet_balance
+sub_id
+number_of_boxes
+next_bill_dt
+sub_status
+sub_type
+sub_start_dt
+sub_end_dt
+sub_frequency
+sub_bill_cycle_ref_dt
+sub_cancel_reason_survey_opt_id
+initial_start_dt
+last_pause_dt
+last_pause_resume_dt
+shipping_st
+shell_account
+email
+mobile
+first_nm
+last_nm
+address_1
+address_2
+city
+state
+zip -->
