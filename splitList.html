@@ -61,7 +61,7 @@ function gPostIds(){
       },
       beforeSend: function (xhr) {
 			 xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
-      // xhr.setRequestHeader('Authorization', "Bearer " + "AAEAAJASUinmhVDNCbtqolTJEn5njgR9GHWZk2wuDgh148gfbUzbRzULcXZ763ulRiTPriqzqFR6z9wPHuKFARPvG3rTwEt1UkjiWQnWB86BxaUqMYVu6PQTSerR3EdZGTZrCZtkSUX2V_HLPibzQohGZ-o8GZ9kZoaWCULze7W-S39JGI5lyfEhyoXzJTdOeesqqNsjM87VGaiFB6wKb4XxlRNlYuCQ88X5ffKidbLUGKUpEerp89WsNWqLX8PUN4aVK1Oo-BdL4Mc-EpLYld0NlzwaI6yLKGNzY484OCR3jCwDhcTPV8oJQIKQGhLV_e4YRHibg1k-Ur4RKdc6Jpf1k3pkAQAAAAEAALLJUlH0mM5VES-x0h5kOHTKh0WyZ_J0GvGrpZhfPOwiO-yIjmHvXStw12EFVNmG-lP4jSrJffNEQpxhptN8aw0CqKEQ8b_2qpWHtOJCV9YnGxeUq1r_mK6TqQtRZMxy22yegwsiCs1BWURhKu4B8my3ce2Cb_hDv5ZmcoVL1-2vEIbgWMAQQl0-upTQVRkHWBzxBzWzMiTYH8E8ricC5B7bMasUfU_imw2HvcNPjK54SZB7fTZY6aMSlFXVbAEfjOU6JQcR7CKMm17l33ISepKSvHK0d87RW_uc14qY9AfakhUfsEMste4t_hlAn7FtKzQQ-5tRGhxxHq7xGZNTu03rT00P62cHrM4e1mA1tfSkI0OX1RKwpn8Gpp-oaHyIkxJ5eE97YzRsMXkBXaJV0x0dD92xb7_BmPCfXcSoOnY2RVV_Xt7oHupY2lyzDFc8Cal70Hym1-sQejSl-MllWr0");
+      // xhr.setRequestHeader('Authorization', "Bearer " + "AAEAACz7dJAxK2dPblMxR7b26fOVFrJatbMRnqfQIqkHL3iemKzOjo5vWzkH7JfmH12hpHKVkVPIarcbdgN2mjeE7VW1erO27dvzwS3kgGbW2soyJHhXmf66wzXW_JkftYTRZKc8ATIoJR53sfuapSzXeC9pi05u6BmnjYuBBTtDmSdiGVNqoWbKMh8XRoz3eGvtzHIx1XbR3KOEx5d7264zGa7LoEiFDsIg-kFealFXxNL2Qy30bB3_rjKWROGe58MuoniMsngruQZf1dqjQu7g8chD1ZEEPxsEo3AO-6KR3qi8H0tNRx2_PnACz0-91X7AiB8T5Q7oLCKm3tNJBZntIWBkAQAAAAEAAA_lh8mtN1DLesRULUZSRu4bg0Q3ReJtGI-psBvE2Thn5D2i_hlWYifgqI7kQSpBoN-oLQRFwh2y-2yKPInZPYGfNaua0HjuMPsuhVkgd7kIOqnns8x2WyH6kksTSwnn_1mJMNVtzQpJ84gYYHl_6TIuSoiducDPU-9FNdUgDmaDwJZ_KBLkhxBp5fpwvUpaM-Pia4FgatdAJ-RZJukpiSVoROJs1ptslY9dmOnae-UDY21Nmg--gj2_MV-8ThWFHuoTWUMAJB-C0AvT8jMgSHGGoIvGENSo5tQTzro7NkiQOQppeaYFea4x_c7KQhyyYPeTDczVJj3j6IFxOYYweJ9c6w-BJ80GpswTcEQ502Whh8qyJSD7O1KczSIJHaNSzPQ2ThmECS3QZ3JZb2z8Pz3X1wP22t_r6KLXy3Zy-OG5zNZfO9dVDhmCj4m6v6WBpjIS7zOiiMBiwXWR3fzrW6k");
 		    },
 
       // data: {
@@ -76,6 +76,7 @@ myfunction(response);
     var final = [];
     var objBody =[];
 function myfunction(e){
+  final = [];
   console.log(e)
   for (var i = 0; i < e.length; i++) {
     var a = e[i].columnName
@@ -97,6 +98,7 @@ var x = document.querySelector("#ok").value;
   }
 };
 function buildObjBody(){
+  var objBody =[];
 for (var i = 0; i < final.length; i++) {
   var objBodyBuild ={"prop_id": final[i],"seq": i+1,};
   objBody.push(objBodyBuild);
