@@ -41,47 +41,39 @@
     </html>
 
     <form class="" action="index.html" method="post">
-    list  <input id="ok" type="text" name="" value=""/>
-    <button type="button" name="button" onclick="gPostIds()">click</button>
-    <button type="button" name="button" onclick="buildObjBody()">validate</button>
+    Field Names:  <input id="ok" type="text" name="" value=""/>
+    <button type="button" name="button" onclick="gPostIds()">Initialize</button>
+    <button type="button" name="button" onclick="buildObjBody()">Get</button>
     </form>
   </body>
 <script type="text/javascript">
-
+var propArray = {};
+var propIds = [];
+var objBody =[];
+var tableName = document.querySelector("#tableName").value;
 
 function gPostIds(){
-  // console.log("something")
-  //1004
-  var x = document.querySelector("#tableName").value;
   $.ajax({
       type:'GET',
       url: 'https://api.eccmp.com/services2/api/Table',
       data:{
-        tableName: x
+        tableName: tableName
       },
       beforeSend: function (xhr) {
 			 xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
-      // xhr.setRequestHeader('Authorization', "Bearer " + "AAEAACz7dJAxK2dPblMxR7b26fOVFrJatbMRnqfQIqkHL3iemKzOjo5vWzkH7JfmH12hpHKVkVPIarcbdgN2mjeE7VW1erO27dvzwS3kgGbW2soyJHhXmf66wzXW_JkftYTRZKc8ATIoJR53sfuapSzXeC9pi05u6BmnjYuBBTtDmSdiGVNqoWbKMh8XRoz3eGvtzHIx1XbR3KOEx5d7264zGa7LoEiFDsIg-kFealFXxNL2Qy30bB3_rjKWROGe58MuoniMsngruQZf1dqjQu7g8chD1ZEEPxsEo3AO-6KR3qi8H0tNRx2_PnACz0-91X7AiB8T5Q7oLCKm3tNJBZntIWBkAQAAAAEAAA_lh8mtN1DLesRULUZSRu4bg0Q3ReJtGI-psBvE2Thn5D2i_hlWYifgqI7kQSpBoN-oLQRFwh2y-2yKPInZPYGfNaua0HjuMPsuhVkgd7kIOqnns8x2WyH6kksTSwnn_1mJMNVtzQpJ84gYYHl_6TIuSoiducDPU-9FNdUgDmaDwJZ_KBLkhxBp5fpwvUpaM-Pia4FgatdAJ-RZJukpiSVoROJs1ptslY9dmOnae-UDY21Nmg--gj2_MV-8ThWFHuoTWUMAJB-C0AvT8jMgSHGGoIvGENSo5tQTzro7NkiQOQppeaYFea4x_c7KQhyyYPeTDczVJj3j6IFxOYYweJ9c6w-BJ80GpswTcEQ502Whh8qyJSD7O1KczSIJHaNSzPQ2ThmECS3QZ3JZb2z8Pz3X1wP22t_r6KLXy3Zy-OG5zNZfO9dVDhmCj4m6v6WBpjIS7zOiiMBiwXWR3fzrW6k");
 		    },
-
-      // data: {
-      //   Authorization: "Bearer AAEAAJ7y7-AiR0tFHuiiuJ6JtIVvrICyUXjd-yLcqh1DOAOrZDaGAkf8JKDZDW37XBqeupvAQR8UrdWHnN3zMtS5g97x3a2VSAeh3a3DkDqluww931X-b0-JD0TSRy947GDDw1gTx6J4bhcHqe2Fy0hj3n6ffE9dwU1lK-lFmjWzz_Bh6PBw5BBWtF0HDo5aKRtW-urZrA9FLvppYol_0VphsXJUpLUtyUAp6o81AtU_d8UoCCDpMs3IC41ufYXVKGNU2iGQf6PGhFKoXbm7c4pU0JuEdONfiWRsuzhQiaUHAqAnjVKoLHmUs7DQoKTr3fThQswkW2RxheJDjI3rXIvh0XtkAQAAAAEAAKN9frFy8V3Q4ghIspLXw5xoRksI-D-RRJkvx3RxOwSpNj0ietCZ3wROAPU2wbc1uFiYq4yJu9dt8e2-RVkD_riDVBObBQbXP5W5rZNo4oXk6DsfOLtxmZh2WbMt330SBUzLWftX-h8GNPaaR5vIGUos-_qO1G_dRcYaCrxiCq2GCa_W_A0IhRfoCKa0YdKpZwKthIlrOTJ7tvzH9Xunykb1YNZjzWAWycKZnZ-oaA8sdjYUvb1jVSAuEafgALTlb9BhE-3vgxlygyuGJnsh0saf17i3XK9yPCihCI1g-Z0CwxB5rxxK6TfIdM_6QOCQy9hCuUW8h7VFLfsXw7GodyzpWKrmBziPco9bCm2KSN0TAFbyOEWIo75RtCgx-PEKBLV8yvAFarPP54p08bjJpkIenkpXw1cGbOVKWsC0aRCsJqXSFvYCov8kVHfZOqPK2cWis9gu7dha1U0d-QEOgtc"
-      // },
       success: function(response) {
-console.log("abc")
-myfunction(response);
+        myfunction(response);
       }});
     };
-    var propArray = {};
-    var final = [];
-    var objBody =[];
+
 function myfunction(e){
-  final = [];
-  console.log(e)
+  propIds = [];
+  console.log('EntityId: '+ e[0].entityId)
   for (var i = 0; i < e.length; i++) {
-    var a = e[i].columnName
-    var b = e[i].propId
-    propArray[a] = b
+    var columnName = e[i].columnName
+    var propId = e[i].propId
+    propArray[columnName] = propId
   }
 // console.log("this is the prop array: " + JSON.stringify(propArray));
 // console.log(propArray.ak_customer)
@@ -89,24 +81,34 @@ var x = document.querySelector("#ok").value;
   var y = x.split(" ");
   for (var i = 0; i < y.length; i++) {
     var w = propArray[y[i]];
-    final.push(w);
+    propIds.push(w);
     if (i == (y.length -1)) {
-      console.log("final " + final);
+      console.log("PropIDs: " + propIds);
     }
-
-
   }
 };
+
+
+
+
 function buildObjBody(){
   var objBody =[];
-for (var i = 0; i < final.length; i++) {
-  var objBodyBuild ={"prop_id": final[i],"seq": i+1,};
+for (var i = 0; i < propIds.length; i++) {
+  var objBodyBuild ={"prop_id": propIds[i],"seq": i+1,};
   objBody.push(objBodyBuild);
   }
   console.log(JSON.stringify(objBody));
+for (var i = 0; i < propIds.length; i++) {
+  if (propIds[i] == null) {
+    console.log("Warning: Column name " + i + " does not match the DB field name");
+  }
+}
+
+
+
+
 ;}
 
-//some validation to ensure the number of input matches the output?
 
 // function myfunction(){
 //   var x = document.querySelector("#ok").value;
@@ -130,34 +132,3 @@ for (var i = 0; i < final.length; i++) {
 // };
 </script>
 </html>
-
-<!-- ak_customer
-domain_prefix
-customer_id
-location_id
-customer_type
-wallet_balance
-sub_id
-number_of_boxes
-next_bill_dt
-sub_status
-sub_type
-sub_start_dt
-sub_end_dt
-sub_frequency
-sub_bill_cycle_ref_dt
-sub_cancel_reason_survey_opt_id
-initial_start_dt
-last_pause_dt
-last_pause_resume_dt
-shipping_st
-shell_account
-email
-mobile
-first_nm
-last_nm
-address_1
-address_2
-city
-state
-zip -->
