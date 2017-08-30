@@ -78,7 +78,8 @@ function myfunction(e){
 // console.log("this is the prop array: " + JSON.stringify(propArray));
 // console.log(propArray.ak_customer)
 var x = document.querySelector("#ok").value;
-  var y = x.split(" ");
+var xx = x.toLowerCase()
+  var y = xx.split(" ");
   for (var i = 0; i < y.length; i++) {
     var w = propArray[y[i]];
     propIds.push(w);
