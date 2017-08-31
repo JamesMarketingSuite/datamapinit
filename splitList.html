@@ -47,8 +47,10 @@
     </form>
   </body>
 <script type="text/javascript">
-var propArray = {};
+var propArrayProps = {};
+var propArrayColumns = {};
 var propIds = [];
+var columnNames = [];
 var objBody =[];
 
 
@@ -74,15 +76,17 @@ function myfunction(e){
   for (var i = 0; i < e.length; i++) {
     var columnName = e[i].columnName
     var propId = e[i].propId
-    propArray[columnName] = propId
+    propArrayProps[columnName] = propId;
+    propArrayColumns[columnName] = columnName;
   }
-// console.log("this is the prop array: " + JSON.stringify(propArray));
-// console.log(propArray.ak_customer)
+
 var x = document.querySelector("#ok").value;
 var xx = x.toLowerCase()
   var y = xx.split(" ");
   for (var i = 0; i < y.length; i++) {
-    var w = propArray[y[i]];
+    var w = propArrayProps[y[i]];
+    var z = propArrayColumns[y[i]];
+    columnNames.push(z);
     propIds.push(w);
     if (i == (y.length -1)) {
       console.log("PropIDs: " + propIds);
@@ -96,7 +100,7 @@ var xx = x.toLowerCase()
 function buildObjBody(){
   var objBody =[];
 for (var i = 0; i < propIds.length; i++) {
-  var objBodyBuild ={"prop_id": propIds[i],"seq": i+1,};
+  var objBodyBuild ={"prop_id": propIds[i],"label": columnNames[i],"seq": i+1,};
   objBody.push(objBodyBuild);
   }
   console.log(JSON.stringify(objBody));
