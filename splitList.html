@@ -50,9 +50,10 @@
 var propArray = {};
 var propIds = [];
 var objBody =[];
-var tableName = document.querySelector("#tableName").value;
+
 
 function gPostIds(){
+  var tableName = document.querySelector("#tableName").value;
   $.ajax({
       type:'GET',
       url: 'https://api.eccmp.com/services2/api/Table',
@@ -101,7 +102,7 @@ for (var i = 0; i < propIds.length; i++) {
   console.log(JSON.stringify(objBody));
 for (var i = 0; i < propIds.length; i++) {
   if (propIds[i] == null) {
-    console.log("Warning: Column name " + i + " does not match the DB field name");
+    console.log("Warning: Column name " + (i+1) + " does not match the DB field name");
   }
 }
 
