@@ -52,7 +52,7 @@ var propArrayColumns = {};
 var propIds = [];
 var columnNames = [];
 var objBody =[];
-
+var objBodySimple =[];
 
 function gPostIds(){
   var tableName = document.querySelector("#tableName").value;
@@ -90,7 +90,7 @@ var xx = x.toLowerCase()
     columnNames.push(z);
     propIds.push(w);
     if (i == (y.length -1)) {
-      console.log("PropIDs: " + propIds);
+    //  console.log("PropIDs: " + propIds);
     }
   }
 };
@@ -101,41 +101,22 @@ var xx = x.toLowerCase()
 function buildObjBody(){
   var objBody =[];
 for (var i = 0; i < propIds.length; i++) {
-  var objBodyBuild ={"prop_id": propIds[i],"label": columnNames[i],"seq": i+1,};
-  objBody.push(objBodyBuild);
+  if (propIds[i] != null) {
+    var objBodyBuild ={"prop_id": propIds[i],"label": columnNames[i],"seq": i+1,"propMapPropImportSetting": {"prop_id": propIds[i],"blast_flag": 0,"keep_old_value_flag": 0,"treat_null_as_value_flag":0,"case_sensitive_flag": 0,"multivalue_append_flag": 0,"skip_email_ban_flag": 0}};
+    objBody.push(objBodyBuild);
+    var objBodyBuildSimple ={"prop_id": propIds[i],"label": columnNames[i],"seq": i+1};
+    objBodySimple.push(objBodyBuildSimple);
   }
-  console.log(JSON.stringify(objBody));
+  }
+  console.log("Simple: \n\n" + (JSON.stringify(objBodySimple)));
+  console.log("Full: \n\n" + JSON.stringify(objBody));
 for (var i = 0; i < propIds.length; i++) {
   if (propIds[i] == null) {
     console.log("Warning: Column name " + (i+1) + " does not match the DB field name");
   }
 }
-
-
-
-
 ;}
 
 
-// function myfunction(){
-//   var x = document.querySelector("#ok").value;
-//   var y = x.split(" ");
-//   console.log(y);
-// };
-
-// function myfunction(){
-//   var x = document.querySelector("#ok").value;
-//   console.log(x);
-//     var y = x.split(" ");
-//   console.log(y);
-//   var z = [];
-//   for (var i = 0; i < y.length; i++) {
-//     var k ={"prop_id": y[i],"seq": i+1,};
-//     console.log("this is k: " + k.prop_id)
-//     z.push(k);
-//     console.log(z[0].prop_id);
-//     console.log(JSON.stringify(z));
-//   }
-// };
 </script>
 </html>
