@@ -9,7 +9,7 @@
 
   </script>
     <meta charset="utf-8">
-    <title></title>
+    <title>DataMap Initialization Tool</title>
   </head>
   <body>
     <form id="token">
@@ -72,6 +72,7 @@ function gPostIds(){
 
 function myfunction(e){
   propIds = [];
+  columnNames = [];
   console.log('EntityId: '+ e[0].entityId)
   for (var i = 0; i < e.length; i++) {
     var columnName = e[i].columnName
